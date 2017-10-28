@@ -34,6 +34,9 @@ let app = new Vue({
         },
         getCoinImage: function(symbol) {
             return BASE_IMAGE_URL + this.coinData[symbol]['ImageUrl'];
+        },
+        getColor: (num) => {
+            return num > 0 ? "color:green;" : "color:red;";
         }
     },
     created: function() {

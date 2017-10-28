@@ -32,13 +32,13 @@
                         <td><img v-bind:src="getCoinImage(coin.symbol)"> {{ coin.name }}</td>
                         <td>{{ coin.symbol }}</td>
                         <td>{{ coin.price_usd | currency }}</td>
-                        <td>
+                        <td v-bind:style="getColor(coin.percent_change_1h)">
                             <span v-if="coin.percent_change_1h > 0">+</span>{{ coin.percent_change_1h }}%
                         </td>
-                        <td>
+                        <td  v-bind:style="getColor(coin.percent_change_24h)>
                             <span v-if="coin.percent_change_24h > 0">+</span>{{ coin.percent_change_24h }}%
                         </td>
-                        <td>
+                        <td  v-bind:style="getColor(coin.percent_change_7d)>
                             <span v-if="coin.percent_change_7d > 0">+</span>{{ coin.percent_change_7d }}%
                         </td>
                         <td>{{ coin.market_cap_usd | currency }}</td>
@@ -55,6 +55,7 @@
             Code by - <a href="https://scotch.io/tutorials/build-a-cryptocurrency-comparison-site-with-vuejs">Randall Degges</a>
         </p>
         <script src="static/js/vue.js"></script>
+        <script src="static/js/vue2-filter.js"></script>
         <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
         <script src="static/js/app.js"></script>
     </body>
