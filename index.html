@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>CryptoCompare</title>
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="stylesheet" href="static/css/style.css">
+    </head>
+
+    <body class="container">
+        <h1>Crypto Compare</h1><br>
+
+        <div id="app">
+            <table class="table table-hover">
+                <thead>
+                  <tr>
+                    <td>Rank</td>
+                    <td>Name</td>
+                    <td>Symbol</td>
+                    <td>Price (USD)</td>
+                    <td>1H</td>
+                    <td>1D</td>
+                    <td>1W</td>
+                    <td>Market Cap (USD)</td>
+                </thead>
+                <tbody>
+                    <tr v-for="coin in coins">
+                        <td>{{ coin.rank }}</td>
+                        <td><img v-bind:src="getCoinImage(coin.symbol)"> {{ coin.name }}</td>
+                        <td>{{ coin.symbol }}</td>
+                        <td>{{ coin.price_usd | currency }}</td>
+                        <td>
+                            <span v-if="coin.percent_change_1h > 0">+</span>{{ coin.percent_change_1h }}%
+                        </td>
+                        <td>
+                            <span v-if="coin.percent_change_24h > 0">+</span>{{ coin.percent_change_24h }}%
+                        </td>
+                        <td>
+                            <span v-if="coin.percent_change_7d > 0">+</span>{{ coin.percent_change_7d }}%
+                        </td>
+                        <td>{{ coin.market_cap_usd | currency }}</td>
+                    </tr>
+                </tbody>
+              </table>
+        </div>
+
+        <hr>
+        <p>
+            This website indexes the top 10 cryptocurrencies by market cap (how much the sum of all coins is collectively worth), and gives you an easy way to compare cryptocurrency performance and rank over the last week.
+            <br>
+            <br>
+            Code by - <a href="https://scotch.io/tutorials/build-a-cryptocurrency-comparison-site-with-vuejs">Randall Degges</a>
+        </p>
+        <script src="static/js/vue.js"></script>
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+        <script src="static/js/app.js"></script>
+    </body>
+</html>
