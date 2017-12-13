@@ -11,7 +11,6 @@ let app = new Vue({
     },
     methods: {
         getCoinData : function() {
-            let self = this;
             console.log('Getting Coin Data')
 
             axios.get(CRYPTOCOMPARE_API_URI + "/data/all/coinlist")
@@ -22,18 +21,20 @@ let app = new Vue({
                 })
                 .catch((err) => {
                     this.getCoins();
-                    console.log(err);
+                    console.log('Error', err.message);
                 })
         },
         getCoins: function() {
-            let self = this;
-
-            axios.get(COINMARKETCAP_API_URI + 'v1/ticker/?limit=7')
+            axios.get(COINMARKETCAP_API_URI + 'v1/ticker/?limit=10')
                 .then((resp) => this.coins = resp.data)
                 .catch(err => console.log(err))
         },
         getCoinImage: function(symbol) {
-            return BASE_IMAGE_URL + this.coinData[symbol]['ImageUrl'];
+            try {
+                return BASE_IMAGE_URL + this.coinData[symbol]['ImageUrl'];
+            } catch (err) {
+                return "https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg"
+            }
         },
         getColor: (num) => {
             return num > 0 ? "color:green;" : "color:red;";
