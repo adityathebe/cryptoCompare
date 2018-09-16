@@ -16,3 +16,7 @@ td img {
   margin-top: 5em;
   margin-bottom: 5em;
 }
+
+[v-cloak]: {
+  display: none;
+}
